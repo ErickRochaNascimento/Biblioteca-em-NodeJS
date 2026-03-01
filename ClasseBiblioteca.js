@@ -8,6 +8,7 @@ export class Biblioteca{
 
     //Metodo Adicionar Livro
     adicionar(livro){
+        console.log('/n');
         console.log(`Adicionar Livro`);
         const anoAtual = new Date().getFullYear();
 
@@ -24,6 +25,7 @@ export class Biblioteca{
 
     //Metodo Listar Livros 
     listar(){
+        console.log('/n');
         console.log(`Listar Livros`);
         this.livros.forEach(l => {
             console.log(`Titulo: ${l.titulo} - Autor: ${l.autor} - ISBN: ${l.isbn} - Ano de Publicação: ${l.anoPublicacao} - Disponível: ${l.disponivel}`);
@@ -32,6 +34,7 @@ export class Biblioteca{
 
     //Metodo Buscar por ISBN
     buscarPorISBN(isbn){
+        console.log('/n');
         console.log(`Buscar por ISBN: ${isbn}`);
         const livro = this.livros.find(l => l.isbn === isbn);
         if(livro){
@@ -44,6 +47,7 @@ export class Biblioteca{
 
      //Metodo Remover por ISBN
      removerLivro(isbn){
+        console.log('/n');
         console.log(`Remover Livro com ISBN: ${isbn}`);
         const index = this.livros.findIndex(l => l.isbn === isbn);
         if(index !== -1){
