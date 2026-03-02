@@ -7,7 +7,7 @@ export class Biblioteca{
 
 
     //Metodo Adicionar Livro
-    adicionar(livro){
+    adicionarLivro(livro){
         console.log('\n');
         console.log(`Adicionar Livro`);
         const anoAtual = new Date().getFullYear();
@@ -24,7 +24,7 @@ export class Biblioteca{
     }
 
     //Metodo Listar Livros 
-    listar(){
+    listarLivros(){
         console.log('\n');
         console.log(`Listar Livros`);
         this.livros.forEach(l => {
@@ -33,7 +33,7 @@ export class Biblioteca{
     }
 
     //Metodo Buscar por ISBN
-    buscarPorISBN(isbn){
+    buscarPorIsbn(isbn){
         console.log('\n');
         console.log(`Buscar por ISBN: ${isbn}`);
         const livro = this.livros.find(l => l.isbn === isbn);
