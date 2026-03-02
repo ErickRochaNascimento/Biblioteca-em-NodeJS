@@ -1,3 +1,4 @@
+import e from "express";
 
 export class Biblioteca{
     constructor(){
@@ -13,48 +14,39 @@ export class Biblioteca{
         const anoAtual = new Date().getFullYear();
 
         if( !(livro.anoPublicacao > anoAtual) && livro.isbn.length == 13 ){
+            
             console.log(`Livro ${livro.titulo} adicionado`);
             this.livros.push(livro);
+            return livro;
         }else if(livro.anoPublicacao > anoAtual){
             console.log(`Livro ${livro.titulo} não adicionado por ter ano de publicação futuro.`);
+            return null;
         }else if(livro.isbn.length != 13){
             console.log(`Livro ${livro.titulo} não adicionado por ter ISBN inválido.`);
+            return null;
         }
 
     }
 
     //Metodo Listar Livros 
     listarLivros(){
-        console.log('\n');
-        console.log(`Listar Livros`);
-        this.livros.forEach(l => {
-            console.log(`Titulo: ${l.titulo} - Autor: ${l.autor} - ISBN: ${l.isbn} - Ano de Publicação: ${l.anoPublicacao} - Disponível: ${l.disponivel}`);
-        })
+        return this.livros;
     }
 
     //Metodo Buscar por ISBN
     buscarPorIsbn(isbn){
-        console.log('\n');
-        console.log(`Buscar por ISBN: ${isbn}`);
-        const livro = this.livros.find(l => l.isbn === isbn);
-        if(livro){
-            console.log(`Livro encontrado: ${livro.titulo}`);
-            console.log(`Titulo: ${livro.titulo} - Autor: ${livro.autor} - ISBN: ${livro.isbn} - Ano de Publicação: ${livro.anoPublicacao} - Disponível: ${livro.disponivel}`);
-        }else{
-            console.log(`Livro com ISBN ${isbn} não encontrado.`);
-        }
+       const resultado = this.livros.find(l =>l.isbn === isbn);
+       return resultado;
      }
 
      //Metodo Remover por ISBN
      removerLivro(isbn){
-        console.log('\n');
-        console.log(`Remover Livro com ISBN: ${isbn}`);
-        const index = this.livros.findIndex(l => l.isbn === isbn);
-        if(index !== -1){
-            this.livros.splice(index, 1);
-            console.log(`Livro com ISBN ${isbn} removido.`);
+        const totalAntes = this.livros.length;
+        this.livros = this.livros.filter(l=> l.isbn !== isbn);
+        if(this.livros.length < totalAntes){
+            return true;
         }else{
-            console.log(`Livro com ISBN ${isbn} não encontrado.`);
+            return false;
         }
      }}
 
